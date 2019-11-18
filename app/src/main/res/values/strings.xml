@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Pasithea</string>
+    <string name="voice_supported">La voix est initialisée</string>
+    <string name="unknown_result">je n\'ai pas compris ce que vous avez dit. Mais c\'est certainement de ma faute.</string>
+    <string name="stt_permissions_not_granted">Vous n\'avez pas les permissions nécessaire. Vous ne pourrez pas utiliser la reconnaissance vocale</string>
+    <string name="stt_not_supported">La reconnaissance vocale n\'est pas supportée</string>
+    <string name="tts_restart_fr" translatable="false">La reconfiguration est terminée</string>
+    <string name="tts_restart_us" translatable="false">The new language configuration is done.</string>
+    <string name="locale_no_change">Pas de changement de locale</string>
+    <string name="Access_denied">L\'access au framework est impossible</string>
+
+</resources>
