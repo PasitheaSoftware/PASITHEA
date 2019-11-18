@@ -19,6 +19,7 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class SttEngineAsService extends RecognitionService implements Recognitio
     private NotificationHelper mNotificationHelper;
 
     // New version w/ Livedata
-    private static LiveData<ArrayList<String>> ResultLiveData;
+    private static MutableLiveData<String> ResultLiveData;
 
     private static Intent mSrIntent;
     public static final String RESULT_DETECTION = "pro.byzance.pasithea.RESULT_DETECTION";
@@ -58,13 +59,10 @@ public class SttEngineAsService extends RecognitionService implements Recognitio
         Log.i(TAG, "onCreate: Service creation");
     }
 
-    public static LiveData<ArrayList<String>> getResultLiveData() {
+    public static LiveData<String> getResultLiveData() {
         return ResultLiveData;
     }
 
-    public static void setResultLiveData(LiveData<ArrayList<String>> resultLiveData) {
-        ResultLiveData = resultLiveData;
-    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -135,6 +133,9 @@ public class SttEngineAsService extends RecognitionService implements Recognitio
     @Override
     public void onResults(Bundle results) {
         Log.i(TAG, "onResults");
+
+        //ResultLiveData.setValue(results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION));
+
         Intent mBroadcastIntent = new Intent(RESULT_DETECTION);
         mBroadcastIntent.putStringArrayListExtra(EXTRA_VOICE_RESULTS,
                 results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION));

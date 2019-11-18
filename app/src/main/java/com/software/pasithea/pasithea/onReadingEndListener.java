@@ -11,10 +11,10 @@ package com.software.pasithea.pasithea;
 /**
  * Listener interface to trigger an action when the text reading is done.
  *
- * @author Pasithea Software
+ * @author PasitheaFromActivity Software
  * @version 1.0
  *
- * @see Pasithea
+ * @see PasitheaFromActivity
  */
 
 public interface onReadingEndListener {

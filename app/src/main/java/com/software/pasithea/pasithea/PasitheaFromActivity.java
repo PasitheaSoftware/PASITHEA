@@ -11,7 +11,7 @@ package com.software.pasithea.pasithea;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.media.AudioFocusRequest;
@@ -41,7 +41,7 @@ import static com.software.pasithea.pasithea.Environment.getGlobalContext;
  * @version 1.0
  *
  */
-public class Pasithea {
+public class PasitheaFromActivity {
     private static final String TAG = "PASITHEA";
 
     private Environment EnvManager = new Environment();
@@ -57,9 +57,9 @@ public class Pasithea {
     private static int navID = 5000;
     private static int writeID = 7000;
 
-    public static Pasithea instance = null;
+    public static PasitheaFromActivity instance = null;
 
-    private Pasithea() {
+    private PasitheaFromActivity() {
         if (Environment.getCurrentYear() == 2019) {
             initializeTts();
         } else {
@@ -82,33 +82,27 @@ public class Pasithea {
      * @return An instance of PASITHEA
      */
 
-    public static synchronized Pasithea getInstance(){
+    public static synchronized PasitheaFromActivity getInstance(){
         if (instance == null) {
             Log.i(TAG, "getInstance: New instance created");
-                instance = new Pasithea();
+                instance = new PasitheaFromActivity();
         }
         return instance;
     }
 
-    protected static synchronized Pasithea getInstance(onInitListener InitListener){
+    protected static synchronized PasitheaFromActivity getInstance(onInitListener InitListener){
         if(instance == null){
             mInitiListener = InitListener;
-            instance = new Pasithea();
+            instance = new PasitheaFromActivity();
         }
         return instance;
     }
 
-    protected static void initializeFramework(@NonNull Application application) {
-        Environment.setGlobalApplication(application);
-        Environment.setGlobalContext(application.getApplicationContext());
-        Environment.setGlobalLocale(application.getApplicationContext().getResources().getConfiguration().locale);
-        try {
-            Environment.setGlobalActivty((Activity) application.getApplicationContext());
-            Environment.setAudioManager(getGlobalActivty());
-        } catch (ClassCastException e){
-            Environment.setGlobalActivty(null);
-            Environment.setRunAsService(true);
-        }
+    protected static void initializeFramework(@NonNull Context context, @NonNull Activity activity) {
+        Environment.setGlobalActivty(activity);
+        Environment.setGlobalContext(context);
+        Environment.setGlobalLocale(context.getResources().getConfiguration().locale);
+        Environment.setAudioManager(activity);
         if (Build.VERSION.SDK_INT >= Environment.AUDIOFOCUS_MIN_BUILD) {
             Environment.requestAudioFocus();
         } else {
@@ -121,14 +115,15 @@ public class Pasithea {
         int supported = EnvManager.checkBuildVersion();
         if (supported == 0) {
             onPermissionResultListener permissionlistener = new onPermissionResultListener() {
+                @SuppressLint("StringFormatInvalid")
                 @Override
                 public void onGranted() {
                     Log.i(TAG, "initializeStt: STT supported");
                     if (mInitiListener != null){
-                        sayInitSomething(Environment.getGlobalContext().getString(R.string.init_done),
+                        sayInitSomething(Environment.getGlobalContext().getString(R.string.voice_supported),
                                 mInitiListener);
                     } else {
-                        saySomething(Environment.getGlobalContext().getString(R.string.init_done));
+                        saySomething(Environment.getGlobalContext().getString(R.string.voice_supported));
                     }
                 }
 

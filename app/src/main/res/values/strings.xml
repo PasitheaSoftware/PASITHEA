@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Pasithea</string>
-    <string name="voice_supported">La voix est initialisée</string>
+    <string name="init_done">L\'initialisation est terminée</string>
     <string name="unknown_result">je n\'ai pas compris ce que vous avez dit. Mais c\'est certainement de ma faute.</string>
     <string name="stt_permissions_not_granted">Vous n\'avez pas les permissions nécessaire. Vous ne pourrez pas utiliser la reconnaissance vocale</string>
     <string name="stt_not_supported">La reconnaissance vocale n\'est pas supportée</string>

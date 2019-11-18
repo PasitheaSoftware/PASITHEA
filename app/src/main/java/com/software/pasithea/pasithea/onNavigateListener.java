@@ -11,10 +11,10 @@ package com.software.pasithea.pasithea;
 /**
  * Listener interface to trigger the actions depending on the navigation keywords detected.
  *
- * @author Pasithea Software
+ * @author PasitheaFromActivity Software
  * @version 1.0
  *
- * @see Pasithea
+ * @see PasitheaFromActivity
  */
 
 public interface onNavigateListener {

@@ -10,6 +10,7 @@ package com.software.pasithea.pasithea;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
@@ -44,12 +45,14 @@ class Environment extends AppCompatActivity {
     private static int currentAudioVolume;
     private static int maxAudioVolume;
     private static int[] audioDevicesList = {3,4,7,8,22};
+    private static boolean runAsService = false;
     private static AudioFocusRequest mFocusRequest = null;
     private static AudioManager mAudioManager;
     private static Locale oldLocale = null;
     private static Activity globalActivty = null;
     private static Context globalContext = null;
     private static Locale globalLocale = null;
+    private static Application globalApplication = null;
 
     private onPermissionResultListener PermissionListener = null;
     private static onPermissionRequestEndListener RequestEndListener = null;
@@ -282,6 +285,10 @@ class Environment extends AppCompatActivity {
         return globalLocale;
     }
 
+    public static Application getGlobalApplication() {
+        return globalApplication;
+    }
+
     public static int getRestartAll() {
         return RestartAll;
     }
@@ -296,6 +303,10 @@ class Environment extends AppCompatActivity {
 
     public static void setGlobalLocale(Locale globalLocale) {
         Environment.globalLocale = globalLocale;
+    }
+
+    public static void setGlobalApplication(Application application) {
+        Environment.globalApplication = application;
     }
 
     public static void setRestartAll(int restartAll) {
@@ -313,5 +324,13 @@ class Environment extends AppCompatActivity {
     public static int getCurrentYear(){
         Calendar currentDate = Calendar.getInstance();
         return currentDate.get(Calendar.YEAR);
+    }
+
+    public static boolean getRunAsService() {
+        return runAsService;
+    }
+
+    public static void setRunAsService(boolean runAsService) {
+        Environment.runAsService = runAsService;
     }
 }

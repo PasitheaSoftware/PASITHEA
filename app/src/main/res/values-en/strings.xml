@@ -5,6 +5,6 @@
     <string name="stt_not_supported">The speech recognition is not supported</string>
     <string name="stt_permissions_not_granted">You don\'t the correct permissions. The speech recognition will not work.</string>
     <string name="unknown_result">I didn\'t understand what you have said but I\'m sur this is my fault.</string>
-    <string name="voice_supported">The voice is initialized</string>
     <string name="Access_denied">The framework is locked</string>
+    <string name="init_done">the initialization is done</string>
 </resources>

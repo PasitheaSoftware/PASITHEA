@@ -11,10 +11,10 @@ package com.software.pasithea.pasithea;
 /**
  * Luistener interface to trigger the action when the locale is change in the framework.
  *
- * @author Pasithea Software
+ * @author PasitheaFromActivity Software
  * @version 1.0
  *
- * @see Pasithea
+ * @see PasitheaFromActivity
  */
 
 public interface onChangeLanguageDoneListener {

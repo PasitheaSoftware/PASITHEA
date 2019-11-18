@@ -11,10 +11,10 @@ package com.software.pasithea.pasithea;
 /**
  * Listener interface to trigger an action when the text transcript is return by the speech recognition engine.
  *
- * @author Pasithea Software
+ * @author PasitheaFromActivity Software
  * @version 1.0
  *
- * @see Pasithea
+ * @see PasitheaFromActivity
  */
 
 public interface onWriteListener {
