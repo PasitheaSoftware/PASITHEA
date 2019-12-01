@@ -53,7 +53,7 @@ publishing {
 }
 
 artifactory {
-    contextUrl = 'http://logicielpasithea.com:8081/artifactory'
+    contextUrl = <URL OF OUR MAVEN PRIVATE REPOSITORY>
     publish {
         repository {
             repoKey = libraryVersion.endsWith('SNAPSHOT') ? 'pasithea-snapshot-local' : libraryVersion.endsWith('TEST') ? 'pasithea-test-local' : 'pasithea-release-local'
