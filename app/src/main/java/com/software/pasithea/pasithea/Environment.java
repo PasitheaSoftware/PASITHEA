@@ -82,8 +82,8 @@ class Environment extends AppCompatActivity {
         setaudiomanager(activity): Set the audioManager for the specified activity.
         checkAudioFocus(): Ask for the audio focus.
          */
-    public static void setAudioManager(Activity activity) {
-        Environment.mAudioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
+    public static void setAudioManager() {
+        Environment.mAudioManager = (AudioManager) getGlobalApplication().getSystemService(Context.AUDIO_SERVICE);
         Environment.mAudioManager.setParameters("noise_suppression=on");
     }
 

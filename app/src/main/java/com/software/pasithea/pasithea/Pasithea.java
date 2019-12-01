@@ -36,8 +36,10 @@ import static com.software.pasithea.pasithea.Environment.getGlobalContext;
  * Once the initialization is done you get an instance by calling the method getInstance().
  * Depending on the build methods you used, the initialization will either retrun the instance of PASITHEA
  * or execute an action once the initialization is done. For more details on the initialization check the PasitheaBuilderFromActivity class.
- * @see PasitheaBuilderFromActivity
- * @author PasitheaFromActivity Software
+ *
+ * @see PasitheaBuilder
+ *
+ * @author Pasithea Software
  * @version 1.0
  *
  */
@@ -104,12 +106,12 @@ public class Pasithea {
         Environment.setGlobalLocale(application.getApplicationContext().getResources().getConfiguration().locale);
         try {
             Environment.setGlobalActivty((Activity) application.getApplicationContext());
-            Environment.setAudioManager(getGlobalActivty());
         } catch (ClassCastException e){
             Environment.setGlobalActivty(null);
             Environment.setRunAsService(true);
         }
         if (Build.VERSION.SDK_INT >= Environment.AUDIOFOCUS_MIN_BUILD) {
+            Environment.setAudioManager();
             Environment.requestAudioFocus();
         } else {
             Log.i(TAG, "initializeFramework: Audio focus not supported in the SDK version");
@@ -249,38 +251,7 @@ public class Pasithea {
         mAnswer.setAnswerListener(listener);
         setmAnswerInstance(mAnswer);
         mAnswer.setKeywords(answerwords[0], answerwords[1]);
-        PasitheaSpeaker.ask_question(question, uid, getGlobalActivty(), mAnswer);
-    }
-
-    /**
-     * Start the question/answer method from another activty than the main activity.
-     * This function used closed questions where there is only 2 possibles answers.
-     *
-     * <p>Example of answer words in the string array:
-     * <br>string[0] = "yes"
-     * <br>string[1] = "no"</p>
-     *
-     * But the answer words can be anything.
-     *
-     * @see onAnswerListener
-     *
-     * @param question The question to ask (No default)
-     * @param answerwords The 2 expected answers in a string list (No default)
-     * @param activity The activity to start the method in
-     * @param listener The onAnswerListener to trigger the actions depending on the answer detected (No default)
-     */
-    public void startQuestionAnswer(String question,
-                                    String[] answerwords,
-                                    AppCompatActivity activity,
-                                    onAnswerListener listener){
-        stopInstances();
-        String uid = "Question_Answer method";
-        Speaker PasitheaSpeaker = new Speaker();
-        AnswerRecognition mAnswer = createAnswer();
-        mAnswer.setAnswerListener(listener);
-        setmAnswerInstance(mAnswer);
-        mAnswer.setKeywords(answerwords[0], answerwords[1]);
-        PasitheaSpeaker.ask_question(question, uid, activity, mAnswer);
+        PasitheaSpeaker.ask_question(question, uid, mAnswer);
     }
 
     /**
@@ -321,24 +292,7 @@ public class Pasithea {
         WriteRecognition mWriteRecognition = createWrite();
         mWriteRecognition.setwriteListener(listener);
         setmWriteInstance(mWriteRecognition);
-        mWriteRecognition.startWriteRecognition(getGlobalActivty());
-    }
-
-    /**
-     * Start a speech-to-text session in a new activity other than the main activity. The activity supported by must be an AppCompatActivity.
-     * This method returns the text transcription of the speech detected and passes it to a onWriteListener defines by the developper.
-     *
-     * @see onWriteListener
-     *
-     * @param activity The new activity to start the session in
-     * @param listener The onWriteListener to trigger the action once the text transcript is available (No default)
-     */
-    public void startWriteText(AppCompatActivity activity, onWriteListener listener){
-        stopInstances();
-        WriteRecognition mWriteRecognition = createWrite();
-        mWriteRecognition.setwriteListener(listener);
-        setmWriteInstance(mWriteRecognition);
-        mWriteRecognition.startWriteRecognition(activity);
+        mWriteRecognition.startWriteRecognition();
     }
 
     /**
@@ -396,38 +350,6 @@ public class Pasithea {
         mNavigation.setKeywords(keywords);
         setmNavigationInstance(mNavigation);
         PasitheaSpeaker.ask_navigation(mNavigation);
-    }
-
-    /**
-     * Start a navigation session in another activity than the main activity.
-     * The keywords are defines by the developper and they are stored in a hashmap.
-     * The hashmap keys are fixed but the values can be anything.
-     * <p>Keys of the hashmap:
-     * <br>"NEXT"
-     * <br>"PREVIOUS"
-     * <br>"QUIT"
-     * <br>"RESUME"
-     * <br>"STOP"
-     * <br>"NEXT_PART"
-     * <br>"PREVIOUS_PART"</p>
-     *
-     * Each keywords is attached to a action defines by the developper in a onNavigateListener and the action is triggered when the keywords is detected.
-     *
-     * @see onNavigateListener
-     *
-     * @param keywords The hashmap for the keywords
-     * @param listener The onNavigateListener to triger the actions
-     */
-    public void startNavigation(HashMap<String, String> keywords,
-                                onNavigateListener listener,
-                                AppCompatActivity activity){
-        pauseReading();
-        Speaker PasitheaSpeaker = new Speaker();
-        NavigationRecogition mNavigation = createNavigation();
-        mNavigation.setNavigationListener(listener);
-        mNavigation.setKeywords(keywords);
-        setmNavigationInstance(mNavigation);
-        PasitheaSpeaker.ask_navigation(mNavigation, activity);
     }
 
     /**
@@ -750,16 +672,4 @@ public class Pasithea {
         }
         instance = null;
     }
-
-    /*public int getAsrSupport(){
-        return Environment.getAsrSupport();
-    }
-
-    public void restoreVolume(){
-        EnvManager.restoreVolume();
-    }
-
-    public void setVolume(int volumeLevel){
-        EnvManager.setAudioVolume(volumeLevel);
-    }*/
 }

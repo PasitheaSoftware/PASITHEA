@@ -13,14 +13,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.util.Log;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 class WriteRecognition {
@@ -29,60 +25,38 @@ class WriteRecognition {
     private int REQUEST_SPEECH_RECOGNIZER;
 
     private onWriteListener WriteListener = null;
-    private static Activity WriteActivity = null;
-    private static Intent WriteStt = null;
+    private Intent WriteIntent = new Intent(Environment.getGlobalContext(), SttEngine.class);
     private BroadcastReceiver WriteBroadcastReceiver = null;
     private LocalBroadcastManager mLocalBroadcastManager = LocalBroadcastManager.getInstance(Environment.getGlobalContext());
 
-
     public WriteRecognition(int SRID) {
         this.REQUEST_SPEECH_RECOGNIZER = SRID;
-    }
-
-    public static Activity getWriteActivity() {
-        return WriteActivity;
-    }
-
-    public static void setWriteActivity(Activity writeActivity) {
-        WriteActivity = writeActivity;
-    }
-
-    public static Intent getWriteStt() {
-        return WriteStt;
-    }
-
-    public static void setWriteStt(Intent writeStt) {
-        WriteStt = writeStt;
     }
 
     public void setwriteListener(onWriteListener listener) {
         this.WriteListener = listener;
     }
 
-    public void startWriteRecognition(Activity activity) {
+    public void startWriteRecognition() {
         if(Environment.getAsrSupport() == 1){
             Speaker mSpeaker = new Speaker();
             mSpeaker.sayMessage(Environment.getGlobalContext().getResources().getString(R.string.stt_not_supported));
             return;
         }
-        setWriteActivity(activity);
-        Log.d(TAG, "startWriteRecognition: I'm in");
-        Intent mWStt = new Intent(Environment.getGlobalContext(), SttEngineAsService.class);
-        setWriteStt(mWStt);
-        IntentFilter WriteIntent = new IntentFilter(SttEngineAsService.RESULT_DETECTION);
+        IntentFilter mWrite = new IntentFilter(SttEngine.RESULT_DETECTION);
         WriteBroadcastReceiver = setBroadcastReceiver();
-        mLocalBroadcastManager.registerReceiver(WriteBroadcastReceiver, WriteIntent);
-        activity.startService(getWriteStt());
+        mLocalBroadcastManager.registerReceiver(WriteBroadcastReceiver, mWrite);
+        Environment.getGlobalApplication().startService(WriteIntent);
     }
 
     private BroadcastReceiver setBroadcastReceiver() {
         BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if (SttEngineAsService.RESULT_DETECTION.equals(intent.getAction())) {
-                    List<String> results = intent.getStringArrayListExtra(SttEngineAsService.EXTRA_VOICE_RESULTS);
-                    int resultstatus = intent.getIntExtra(SttEngineAsService.EXTRA_RESULT, 0);
-                    float[] scores = intent.getFloatArrayExtra(SttEngineAsService.EXTRA_CONFIDENCE_SCORES);
+                if (SttEngine.RESULT_DETECTION.equals(intent.getAction())) {
+                    List<String> results = intent.getStringArrayListExtra(SttEngine.EXTRA_VOICE_RESULTS);
+                    int resultstatus = intent.getIntExtra(SttEngine.EXTRA_RESULT, 0);
+                    float[] scores = intent.getFloatArrayExtra(SttEngine.EXTRA_CONFIDENCE_SCORES);
                     if (resultstatus == Activity.RESULT_OK) {
                         WriteListener.textDetected(results.get(0));
                     } else {
@@ -90,7 +64,6 @@ class WriteRecognition {
                         ErrSpeaker.sayMessage("Je n'ai pas compris ce que vous avez dit");
                         restartWriteRecognition();
                     }
-
                 }
             }
         };
@@ -99,11 +72,11 @@ class WriteRecognition {
 
     public void stopWriteRecognition(){
         mLocalBroadcastManager.unregisterReceiver(WriteBroadcastReceiver);
-        getWriteActivity().stopService(getWriteStt());
+        Environment.getGlobalApplication().stopService(WriteIntent);
     }
 
     public void restartWriteRecognition(){
-        getWriteActivity().stopService(getWriteStt());
-        getWriteActivity().startService(getWriteStt());
+        stopWriteRecognition();
+        startWriteRecognition();
     }
 }

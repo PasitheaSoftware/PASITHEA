@@ -18,28 +18,21 @@ import android.content.Context;
  * @version 1.0
  */
 
-public class PasitheaBuilderFromActivity {
+public class PasitheaBuilder {
 
     private Activity mActivity = null;
     private Application mApplication = null;
     private Context mContext;
     private onInitListener InitListener = null;
 
-    public PasitheaBuilderFromActivity(){}
+    public PasitheaBuilder(){}
 
     /**
-     * Set the initial values for PASITHEA.
-     * These values are mandatory and have no default.
-     * @param activity The activity in which the builder is called
-     * @param context The context in which the builder is called
+     * Set the initial value for PASITHEA.
+     * This value is mandatory and have no default.
+     * @param application The Application calling the initialization.
      */
-    public PasitheaBuilderFromActivity setValues(Activity activity, Context context){
-        this.mActivity = activity;
-        this.mContext = context;
-        return this;
-    }
-
-    public PasitheaBuilderFromActivity setValues(Application application){
+    public PasitheaBuilder setValues(Application application){
         this.mApplication = application;
         this.mContext = application.getApplicationContext();
         return this;
@@ -53,7 +46,7 @@ public class PasitheaBuilderFromActivity {
      *
      * @param listener The onInitListener to trigger an action after the initialization
      */
-    public PasitheaBuilderFromActivity setInitListener(onInitListener listener){
+    public PasitheaBuilder setInitListener(onInitListener listener){
         this.InitListener = listener;
         return this;
     }
@@ -63,11 +56,14 @@ public class PasitheaBuilderFromActivity {
      * @return An initialized instance of PasitheaFromActivity
      */
 
-    public PasitheaFromActivity build(){
+    public Pasithea build(){
         if (InitListener !=null){
-            PasitheaFromActivity.setInitiListener(InitListener);
+            Pasithea.setInitiListener(InitListener);
+            Pasithea.initializeFramework(mApplication);
+            return Pasithea.getInstance(InitListener);
+        } else {
+            Pasithea.initializeFramework(mApplication);
+            return Pasithea.getInstance();
         }
-        PasitheaFromActivity.initializeFramework(mContext, mActivity);
-        return PasitheaFromActivity.getInstance();
     }
 }

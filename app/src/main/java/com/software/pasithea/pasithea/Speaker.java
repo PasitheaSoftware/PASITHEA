@@ -26,7 +26,7 @@ class Speaker {
 
     public Speaker() { }
 
-    public void ask_question(String question, String utteranceID, final Activity activity, final AnswerRecognition answerdetector) {
+    public void ask_question(String question, String utteranceID, final AnswerRecognition answerdetector) {
         TextToSpeech AnswerTTS = TtsEngine.getTtsInstance();
         final String myUID = utteranceID;
         final String myQuestion = question;
@@ -40,7 +40,7 @@ class Speaker {
             @Override
             public void onDone(String utteranceId) {
                 AnswerRecognition myAnswer = answerdetector;
-                myAnswer.startAnswerRecognition(activity);
+                myAnswer.startAnswerRecognition();
                 Log.d(TAG, "onDone: " + myUID);
             }
 
@@ -53,12 +53,9 @@ class Speaker {
         AnswerTTS.speak(myQuestion, TextToSpeech.QUEUE_ADD, TtsEngine.getParams(), "ask_question");
     }
 
-    public void ask_navigation(NavigationRecogition navigation) {
-        navigation.startNavigationRecognition(Environment.getGlobalActivty());
-    }
 
-    public void ask_navigation(NavigationRecogition navigation, AppCompatActivity activity) {
-        navigation.startNavigationRecognition(activity);
+    public void ask_navigation(NavigationRecogition navigation) {
+        navigation.startNavigationRecognition();
     }
 
     public static void sayMessage(String message){

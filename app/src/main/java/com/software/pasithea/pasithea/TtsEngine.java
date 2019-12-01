@@ -93,15 +93,11 @@ class TtsEngine {
             myspeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
                 @Override
                 public void onStart(String utteranceId) {
-
                 }
 
                 @Override
                 public void onDone(String utteranceId) {
-                    Log.d(TAG, "onDone: I'm in");
-                    TtsDonelistener.TtsInitDone();
                     if(Environment.getRestartAll() == 0) {
-                        Log.d(TAG, "onDone: I'm in");
                         TtsDonelistener.TtsInitDone();
                     } else {
                         TtschangeLocaleListener.onReconfigurationDone();

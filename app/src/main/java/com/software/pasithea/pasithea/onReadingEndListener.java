@@ -14,7 +14,7 @@ package com.software.pasithea.pasithea;
  * @author PasitheaFromActivity Software
  * @version 1.0
  *
- * @see PasitheaFromActivity
+ * @see Pasithea
  */
 
 public interface onReadingEndListener {

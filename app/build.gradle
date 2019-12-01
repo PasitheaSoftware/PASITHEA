@@ -38,7 +38,7 @@ dependencies {
 
 def libraryGroupId = 'com.software.pasithea'
 def libraryArtifactId = 'Pasithea'
-def libraryVersion = '1.1.0-SNAPSHOT'
+def libraryVersion = '1.1.1-SNAPSHOT'
 
 publishing {
     publications {
