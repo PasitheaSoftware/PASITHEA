@@ -22,7 +22,7 @@ It provides simple methods that expose the internal functions to the developer. 
 ## Internal Functions With Speech-To-Text Engine
 All the functions that use the speech-to-text have the same architecture model.
 <p align="center">
-  <img width="800" height="400" src="http://logicielpasithea.fr/img/Module_architecture.png">
+  <img width="800" height="400" src="http://logicielpasithea.fr/img/STT_architecture.png">
 </p>
 
 ## Internal functions With Text-To-Speech Engine
