@@ -19,11 +19,19 @@ The cover letter can be found in the sources or [here](https://github.com/Pasith
 Pasithea is the main entry point for the framework. The internal methods can be accessed only through it.\
 It provides simple methods that expose the internal functions to the developer. Pasithea does not provide any GUI elements.
 
-## Internal Functions
-All the functions have the same architecture model.
+## Internal Functions With Speech-To-Text Engine
+All the functions that use the speech-to-text have the same architecture model.
 <p align="center">
   <img width="800" height="400" src="http://logicielpasithea.fr/img/Module_architecture.png">
 </p>
 
-### Navigation
-This function provides a list of 8 customizable keywords (i.e. the developer can use any keywords he or she wants). 
+## Internal functions With Text-To-Speech Engine
+These kind of function is used to say a message or to read a text content.
+<p align="center">
+  <img width="800" height="400" src="http://logicielpasithea.fr/img/TTS_architecture.png">
+</p>
+
+For the details of the functions implementation you can refer to the sources or to the [documentation](http://logicielpasithea.fr/Pasithea/framework/documentation/)
+
+
+
