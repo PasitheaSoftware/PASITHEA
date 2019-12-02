@@ -6,7 +6,7 @@ On top of these functions we created a set of methods to execute different types
 # Documentation
 The framework documentation is available [online](http://logicielpasithea.fr/Pasithea/framework/documentation/)
 
-# Google Developerq Challenge
+# Google Developers Challenge
 This prokect has been submitted to the Google Developers Challenge.\
 The cover letter can be found in the sources or [here](https://github.com/PasitheaSoftware/PASITHEA/blob/1.1.0/Android%20Dev%20Challenge%20-%20Cover%20Letter.pdf)
 
@@ -20,8 +20,10 @@ Pasithea is the main entry point for the framework. The internal methods can be 
 It provides simple methods that expose the internal functions to the developer. Pasithea does not provide any GUI elements.
 
 ## Internal Functions
-All lthe functions have the same architecture model. We used a LocalBroadcastManager to trigger the STT engine. The difference comes with the recevier which is configure especially for each type of operation.
-
+All the functions have the same architecture model.
+<p align="center">
+  <img width="800" height="400" src="http://logicielpasithea.fr/img/Module_architecture.png">
+</p>
 
 ### Navigation
 This function provides a list of 8 customizable keywords (i.e. the developer can use any keywords he or she wants). 
