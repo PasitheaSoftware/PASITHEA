@@ -7,7 +7,7 @@ On top of these functions we created a set of methods to execute different types
 The framework documentation is available [online](http://logicielpasithea.fr/Pasithea/framework/documentation/)
 
 # Google Developers Challenge
-This prokect has been submitted to the Google Developers Challenge.\
+This project has been submitted to the Google Developers Challenge.\
 The cover letter can be found in the sources or [here](https://github.com/PasitheaSoftware/PASITHEA/blob/1.1.0/Android%20Dev%20Challenge%20-%20Cover%20Letter.pdf)
 
 # Architecture
@@ -39,14 +39,14 @@ The audiofocus is granted when PASITHEA is initialized. PASITHEA will release it
 PASITHEA manage automatically the sound volume based on the following method:
 
 <b>IF (HEADSET is CONNECTED):</b>\
-&nbsp;&nbsp;&nbsp;set sound volume to the half;\
+&nbsp;&nbsp;&nbsp;set sound volume to half;\
 <b>ELSE:</b>\
 &nbsp;&nbsp;&nbsp;set sound volume to maximum;
 
 The volume level is displayed when PASITHEA is initialized.  
 
 # Sample Codes
-We wrote two samples codes that available on github.
+We wrote two sample codes that available on github.
 
 ## Question/Answer Sample Code
 This [basic sample code](https://github.com/PasitheaSoftware/QuestionAnswer-Demo) demonstrate how to use the Question/Answer function. 
