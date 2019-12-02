@@ -22,7 +22,7 @@ It provides simple methods that expose the internal functions to the developer. 
 ## Internal Functions
 All lthe functions have the same architecture model. We used a LocalBroadcastManager to trigger the STT engine. The difference comes with the recevier which is configure especially for each type of operation.
 <p align="center">
-  <img width="900" height="500" src="http://logicielpasithea.fr/img/Module_architecture.png">
+  <img width="1000" height="500" src="http://logicielpasithea.fr/img/Module_architecture.png">
 </p>
 
 ### Navigation
