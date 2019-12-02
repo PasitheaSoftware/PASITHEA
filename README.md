@@ -12,7 +12,7 @@ The cover letter can be found in the sources or [here](https://github.com/Pasith
 
 # Architecture
 <p align="center">
-  <img width="460" height="500" src="http://logicielpasithea.fr/img/Pasithea_Arch.png">
+  <img width="300" height="450" src="http://logicielpasithea.fr/img/Pasithea_architecture.png">
 </p>
 
 ## Pasithea
@@ -32,6 +32,29 @@ These kind of function is used to say a message or to read a text content.
 </p>
 
 For the details of the functions implementation you can refer to the sources or to the [documentation](http://logicielpasithea.fr/Pasithea/framework/documentation/)
+
+## Environment Management
+We write a basic environment manager which take care of the audio management.\
+The audiofocus is granted when PASITHEA is initialized. PASITHEA will release it when another app requires the audio (a phone call for example).\
+PASITHEA manage automatically the sound volume based on the following method:
+
+<b>IF (HEADSET is CONNECTED):</b>\
+&nbsp;&nbsp;&nbsp;set sound volume to the half;\
+<b>ELSE:</b>\
+&nbsp;&nbsp;&nbsp;set sound volume to maximum;
+
+The volume level is displayed when PASITHEA is initialized.  
+
+# Sample Codes
+We wrote two samples codes that available on github.
+
+## Question/Answer Sample Code
+This [basic sample code](https://github.com/PasitheaSoftware/QuestionAnswer-Demo) demonstrate how to use the Question/Answer function. 
+
+## Full Sample Code
+This [sample code](https://github.com/PasitheaSoftware/PASITHEA_FULL_SAMPLE_CODE) is more complex than the one above and it shows how to use all the PASITHEA functions.\
+The documentation for this sample code is available [here](http://logicielpasithea.fr/Pasithea/SampleCode/documentation/)
+
 
 
 
