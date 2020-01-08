@@ -6,10 +6,6 @@ On top of these functions we created a set of methods to execute different types
 # Documentation
 The framework documentation is available [online](http://logicielpasithea.fr/Pasithea/framework/documentation/)
 
-# Google Developers Challenge
-This project has been submitted to the Google Developers Challenge.\
-The cover letter can be found in the sources or [here](https://github.com/PasitheaSoftware/PASITHEA/blob/1.1.0/Android%20Dev%20Challenge%20-%20Cover%20Letter.pdf)
-
 # Architecture
 <p align="center">
   <img width="300" height="450" src="http://logicielpasithea.fr/img/Pasithea_architecture.png">
