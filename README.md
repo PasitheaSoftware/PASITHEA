@@ -1,7 +1,7 @@
 # PASITHEA
 PASITHEA is a framework to add a vocal assistant in an Android app or service.\
 This framework is based on the native Android API for the low-level mechanisms that carry out the speech recongition (SpeechRecognizer) and the text to speech (TextToSpeech).\
-On top of these functions we created a set of methods to execute different types of operations. All these methods are customizables which makes the framework fully modular. It can adapt to all the kind of needs.
+On top of these functions we created a set of methods to execute different types of operations. All these methods are customizables which makes the framework fully modular. It can adapt to all kind of needs.
 
 # License
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
@@ -33,9 +33,9 @@ These kind of function is used to say a message or to read a text content.
 For the details of the functions implementation you can refer to the sources or to the [documentation](http://logicielpasithea.fr/Pasithea/framework/documentation/)
 
 ## Environment Management
-We write a basic environment manager which take care of the audio management.\
+We wrote a basic environment manager which take care of the audio management.\
 The audiofocus is granted when PASITHEA is initialized. PASITHEA will release it when another app requires the audio (a phone call for example).\
-PASITHEA manage automatically the sound volume based on the following method:
+PASITHEA manages automatically the sound volume based on the following method:
 
 <b>IF (HEADSET is CONNECTED):</b>\
 &nbsp;&nbsp;&nbsp;set sound volume to half;\
